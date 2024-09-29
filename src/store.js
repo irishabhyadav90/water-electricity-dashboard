@@ -1,9 +1,9 @@
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import { electricityReducer } from './reducers';
+import { electricityAndWaterReducer } from './reducers';
 
 const rootReducer = combineReducers({
-  electricity: electricityReducer
+  dashboard: electricityAndWaterReducer
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));
