@@ -3,6 +3,9 @@ import { FETCH_DATA_REQUEST, FETCH_DATA_SUCCESS, FETCH_DATA_FAILURE } from './ac
 
 const initialState = {
   data: {},
+  /* Todo - Instead of loading we could use keys like status - ["idle", "loading", "success", "failure"]. This is just to avoid code redundancy.
+  By default state would be "idle" 
+  */
   loading: false,
   error: null
 };

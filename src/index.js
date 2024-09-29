@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import App from './App';
 
+/* Todo - ReactDOM.render is deprecated, Please use "createRoot" method from React 17. */
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
