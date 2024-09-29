@@ -16,20 +16,33 @@ export const fetchData = () => {
 // Generate sample data
 const generateData = () => {
   const buildings = ['Building A', 'Building B', 'Building C', 'Building D'];
-  const data = {};
-
-  const consumptionArray = [];
+  const data = {
+    electricity: { buildings: {}, totalConsumption: [] },
+    water: { buildings: {}, totalConsumption: [] }
+  };
 
   buildings.forEach(building => {
-    const buildingData = Array.from({ length: 30 }, (_, i) => ({
+    const electricityData = Array.from({ length: 30 }, (_, i) => ({
       date: `2023-09-${String(i + 1).padStart(2, '0')}`,
       consumption: Math.floor(Math.random() * 100) + 50
     }));
-    data[building] = buildingData;
-    consumptionArray.push({ building, data: buildingData });
-  });
-  
-  data.apiKey = 'sensitive-api-key-12345';
 
-  return { buildings: data, consumptionArray };
+    const waterData = Array.from({ length: 30 }, (_, i) => ({
+      date: `2023-09-${String(i + 1).padStart(2, '0')}`,
+      consumption: Math.floor(Math.random() * 50) + 20
+    }));
+
+    data.electricity.buildings[building] = electricityData;
+    data.electricity.totalConsumption.push(
+      electricityData.reduce((sum, { consumption }) => sum + consumption, 0)
+    );
+
+    data.water.buildings[building] = waterData;
+    data.water.totalConsumption.push(
+      waterData.reduce((sum, { consumption }) => sum + consumption, 0)
+    );
+  });
+
+  // data.apiKey = 'sensitive-api-key-12345';
+  return data;
 };
